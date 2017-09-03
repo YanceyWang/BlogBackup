@@ -1,5 +1,7 @@
 title: Ubuntu下为软件创建快捷方式
 date: 2015-08-04 15:58:22
+categories:
+- 玩机
 tags:
 - 随笔
 - Ubuntu
@@ -44,7 +46,7 @@ wyq@wyq-m81 ~/cmd_markdown_linux64 $ ls
 CmdMarkdown  icudtl.dat  images.jpg  images.png  libffmpegsumo.so  locales  nw.pak
 wyq@wyq-m81 ~/cmd_markdown_linux64 $ ./CmdMarkdown 
 ```
-![cmd_dir](http://7xkr9a.com1.z0.glb.clouddn.com/Blog03cmd_dir.png)
+![cmd_dir](http://7xkr9a.com1.z0.glb.clouddn.com/15/08/04cmd_dir.png)
 图中1是为快捷方式准备的图标.2是cmdmarkdwon程序
 我要为他创建桌面快捷方式.
 
@@ -73,9 +75,9 @@ sudo cp CmdMarkdown.desktop ~/Desktop   //拷贝到桌面
 ```
 在dash中查看:
 按super(也就是win键)键.在office分类下能看到CmdMarkdown啦
-![menu](http://7xkr9a.com1.z0.glb.clouddn.com/Blog03md.png)
+![menu](http://7xkr9a.com1.z0.glb.clouddn.com/15/08/04md.png)
 在桌面上:
-![Desktop](http://7xkr9a.com1.z0.glb.clouddn.com/Blog03desktop.png)
+![Desktop](http://7xkr9a.com1.z0.glb.clouddn.com/15/08/04desktop.png)
 
 
 **大功告成**

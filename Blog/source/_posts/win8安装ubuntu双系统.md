@@ -1,5 +1,7 @@
 title: 猴子也能看懂的UEFI下Win8+Ubuntu双系统安装(Lenovo xiaoxin V4000)
 date: 2015-08-04 14:30:26
+categories:
+- 玩机
 tags:
 - BIOS
 - UEFI
@@ -30,7 +32,7 @@ Secure Boot的目的，是防止恶意软件侵入。它的做法就是采用密
 <!--more-->
 ###MBR与GPT###
 我们在装系统的时候有时可能会遇到这种问题:
-![installError](http://7xkr9a.com1.z0.glb.clouddn.com/Blog02installError.jpg)
+![installError](http://7xkr9a.com1.z0.glb.clouddn.com/15/08/04installError.jpg)
 **Windows无法安装到这个磁盘。选中的磁盘具有MBR分区表。在EFI系统上，Windows只能安装到GPT磁盘**
 这句话的意思是说,你的磁盘以前是按着MBR方式分区的,现在你在UEFI启动方式上,想安装系统在这个磁盘上就必须将磁盘重新按照GPT方式分区.也就是说不同的启动方式,要对应不同的分区方式,系统才能正常安装.那什么是MBR什么是GPT?
 
@@ -38,7 +40,7 @@ MBR和GPT是两种不同的存储磁盘分区信息方式,这些信息包括每�
 
 那怎么知道现在的磁盘是什么方式分区的以及怎么选择分区方式呢?
 这个很简单,我们用DiskGenus查看磁盘分区的时候,在菜单栏有选项,如果当前是按MBR分区,那么会出现`将磁盘分区转换为GPT分区`的选项,如果是按GPT分区的,那么`将磁盘分区转换为MBR分区`是可选的.同时,我们在对磁盘进行分区的时候可以选择分区方式,例如我要将磁盘按GPT方式分区:
-![GPT分区](http://7xkr9a.com1.z0.glb.clouddn.com/Blog02DiskDeniusPartition.jpg)
+![GPT分区](http://7xkr9a.com1.z0.glb.clouddn.com/15/08/04DiskDeniusPartition.jpg)
 可以看到DG工具会提示我们创建ESP分区和MSR分区.这两个分区是UEFI启动方式中非常重要的分区.
 > MSR分区（Microsoft Reserved Partition，缩写MSR）即Microsoft 保留 (MSR) 分区。是每个 在GUID 分区表 (GPT) 上的 Windows操作系统（windows7以上）都要求的分区。
 系统组件可以将 MSR 分区的部分分配到新的分区以供它们使用。例如，将基本 GPT 磁盘转换为动态磁盘后，系统分配的 MSR 分区将被用作“逻辑磁盘管理器”(LDM) 元数据分区。
@@ -46,7 +48,7 @@ MBR和GPT是两种不同的存储磁盘分区信息方式,这些信息包括每�
 > ESP是一个独立于操作系统之外的分区，操作系统被引导之后，就不再依赖它。这使得 ESP 非常适合用来存储那些系统级的维护性的工具和数据，比如：引导管理程序、驱动程序、系统维护工具、系统备份等，甚至可以在 ESP 里安装一个特殊的操作系统（SlaTaz Linux? PuppyLinux? Win PE?）。
 
 在我的联想电脑上利用DG查看磁盘分区:
-![磁盘分区](http://7xkr9a.com1.z0.glb.clouddn.com/Blog02DiskGeniusPartitionTable.png)
+![磁盘分区](http://7xkr9a.com1.z0.glb.clouddn.com/15/08/04DiskGeniusPartitionTable.png)
 我的电脑是用的UEFI启动方式,所以肯定会有ESP 和MSR 分区.在ESP分区中有一个EFI文件,里面有三个文件夹:
 > /EFI/boot
   文件夹中有一个boot64.efi 文件,上面讲过UEFI启动方式就是通过去加载这些.efi文件来启动的.那这个efi是什么时候被加载,加载什么的?
@@ -54,19 +56,19 @@ MBR和GPT是两种不同的存储磁盘分区信息方式,这些信息包括每�
   
   **具体每个文件的含义,在无忧启动论坛有[讨论](http://bbs.wuyou.net/forum.php?mod=viewthread&action=printable&tid=303679)**
 
-![Boot dir](http://7xkr9a.com1.z0.glb.clouddn.com/Blog02BootDir.png)
+![Boot dir](http://7xkr9a.com1.z0.glb.clouddn.com/15/08/04BootDir.png)
 
 > /EFI/Microsoft/Boot
 在Microsoft的Boot目录下有很多内容,包含了windows系统引导启动的所有信息，非常重要，文件夹是字体和语言部分，BCD包含了windows引导开始以后的信息（例如安装Hyper-v虚拟机和恢复还原之类的就会更新里面的信息）。bootmgfw.efi 是 Windows默认引导文件
 
 
-![Microsoft dir](http://7xkr9a.com1.z0.glb.clouddn.com/Blog02MicroBootDir.png)
+![Microsoft dir](http://7xkr9a.com1.z0.glb.clouddn.com/15/08/04MicroBootDir.png)
 
 
 > <span id="efi">/EFI/ubuntu</span>
 这个文件夹在没完成双系统安装前是不会出现的,我这边是安装好双系统后才截的图.这个文件夹下也有些.efi文件,那其中有一个肯定是用来引导Ubuntu的,这边就先不说是那个.等安装完我们可以用命令查看的~
 
-![ubuntu dir](http://7xkr9a.com1.z0.glb.clouddn.com/Blog02UbuntuBootDir.png)
+![ubuntu dir](http://7xkr9a.com1.z0.glb.clouddn.com/15/08/04UbuntuBootDir.png)
 
 ___
 
@@ -93,41 +95,41 @@ ___
 准备好了之后,我们就可以安装了:
 1. 使用Universal USB installer 制作Ubuntu U盘启动盘
 将U盘插入电脑,打开Universal USB installer
-![USB INSTALLER](http://7xkr9a.com1.z0.glb.clouddn.com/Blog02Universal%20USB%20Intaller.png)
+![USB INSTALLER](http://7xkr9a.com1.z0.glb.clouddn.com/15/08/04Universal%20USB%20Intaller.png)
 2. <span id="partition">创建Ubuntu分区</span>
   我们要给ubuntu单独分出一个分区
 右键我的电脑->管理->磁盘管理->右键点击一个比较他的分区->压缩卷
-![shrink volume](http://7xkr9a.com1.z0.glb.clouddn.com/Blog02shrink%20volume.jpg)
+![shrink volume](http://7xkr9a.com1.z0.glb.clouddn.com/15/08/04shrink%20volume.jpg)
 如上图,给ubuntu分了120个G,记住这个大小,在安装ubuntu的时候会用到
 3. 关闭电脑的快速启动功能
 控制面板->硬件和声音->电源选项->选择电源按钮和功能
-![快速启动](http://7xkr9a.com1.z0.glb.clouddn.com/Blog02quickstart1.png)
+![快速启动](http://7xkr9a.com1.z0.glb.clouddn.com/15/08/04quickstart1.png)
 然后点击更改当前不可用的设置->把快速启动的对勾去了
-![关闭快速启动](http://7xkr9a.com1.z0.glb.clouddn.com/Blog02quicksetup2.png)
+![关闭快速启动](http://7xkr9a.com1.z0.glb.clouddn.com/15/08/04quicksetup2.png)
 4. 关闭<span id="secure">Secure Boot</span>
 [前面](#secureboot)介绍了,secure boot 能够防止恶意程序启动,保护电脑安全,但同时也不能让没有签名的系统启动,所以我们要安装多系统,首先得关闭secure boot,
 重启电脑->按快捷键F2(不同机器不同按键,可以试试F2,F12,F8,DEL)进入EUFI设置界面->键盘左右箭头调到Security->上下箭头调到Secure boot->回车弹出选框选Disable
-![secure boot](http://7xkr9a.com1.z0.glb.clouddn.com/Blog02IMAG0008.jpg)
+![secure boot](http://7xkr9a.com1.z0.glb.clouddn.com/15/08/04IMAG0008.jpg)
 5. <span id="5">选择U盘优先启动</span>
 关闭SecureBoot后,要安装ubuntu得让系统从U盘启动
 左右箭头调到BOOT一栏->上下箭头调到EFI USB Device->F6 将这个启动项上调到第一位置.
-![u盘启动](http://7xkr9a.com1.z0.glb.clouddn.com/Blog02IMAG0009.jpg)
+![u盘启动](http://7xkr9a.com1.z0.glb.clouddn.com/15/08/04IMAG0009.jpg)
 6. 保存修改,重启
 在exit一栏,选择第一项save discard and exit.保存修改并重启系统.
 7. 进入tryubuntu界面
 重启后进入ubuntu 安装引导界面,选择地一个try ubuntu,我们把它称为ubuntu pe.
-![ubuntu 安装](http://7xkr9a.com1.z0.glb.clouddn.com/Blog02IMAG0010.jpg)
+![ubuntu 安装](http://7xkr9a.com1.z0.glb.clouddn.com/15/08/04IMAG0010.jpg)
 8. ubuntu分区
 进入ubuntu pe界面后,点击桌面上的install ubuntu进行安装,一路next在select installation type的时候注意选择第三项Something Else
-![select](http://7xkr9a.com1.z0.glb.clouddn.com/Blog02IMAG0013.jpg)
+![select](http://7xkr9a.com1.z0.glb.clouddn.com/15/08/04IMAG0013.jpg)
 然后,会看到磁盘列表里面有个free space大小和你在[第2步](#partition)中分配的大小是一样的.选中他,点击左下的`+`号,创建分区.
 一般来说我们只需要创建3个分区
 第一个分区root,按照我这个选择就行了,大小一般给20G,也就是差不多20000M,类型:primary,新分区的位置:begining of the space ,use as:选择EXT4. 挂载点选择:/(也就是root啦)
-![root](http://7xkr9a.com1.z0.glb.clouddn.com/Blog02IMAG0014.jpg)
+![root](http://7xkr9a.com1.z0.glb.clouddn.com/15/08/04IMAG0014.jpg)
 第二个分区swap,大小不小于你的内存大小,和root分区不同的是use as 选择为swap area.
-![swap](http://7xkr9a.com1.z0.glb.clouddn.com/Blog02IMAG0015.jpg)
+![swap](http://7xkr9a.com1.z0.glb.clouddn.com/15/08/04IMAG0015.jpg)
 第三个分区home,剩下的空间都作为home吧.和Root分区一样设置,只是挂载在home上
-![home](http://7xkr9a.com1.z0.glb.clouddn.com/Blog02IMAG0016.jpg)
+![home](http://7xkr9a.com1.z0.glb.clouddn.com/15/08/04IMAG0016.jpg)
 之后,就一路next,等着装完吧
 9. 安装完成后拔下U盘,F2进入到UEFI设置界面,在boot一栏,可以看见多了一个ubuntu 启动选项,将他上调到第一
 10. 重启就进入到我们熟悉了GRUB引导界面了.默认第一项是进入ubuntu,然后还有windows boot manager 也就是win8系统.我们可以上下选择进入哪个系统.
@@ -143,7 +145,7 @@ ___
 sudo efibootmgr -v
 ```
 这个命令可以查看当前系统所有的可用启动项
-![efibootmgr](http://7xkr9a.com1.z0.glb.clouddn.com/Blog02efibootmgr.png)
+![efibootmgr](http://7xkr9a.com1.z0.glb.clouddn.com/15/08/04efibootmgr.png)
 可以看到现在我的系统包含编号为0001,0003,2003,0004,2001,2002的启动项,而且我当前使用的是0001也就是ubuntu启动啦.往下看,可以发现没法启动项的启动文件都列出来了
 ubuntu -> /EFI/ubuntu/shimx64.efi
 win boot manager -> /EFI/Microsoft/Boot/bootmgfw.efi

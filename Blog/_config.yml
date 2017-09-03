@@ -3,18 +3,18 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 遇见最美的自己
+title: 解忧杂货店
 subtitle: You know I love you
 description: Android,安卓,linux,ubuntu
 author: YanceyWang 
-language:
+language: zh-Hans
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://yancey.top
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :title/
 permalink_defaults:
 
 # Directory
@@ -63,22 +63,23 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/YanceyWang/YanceyWang.github.io
+  repo: git@github.com:YanceyWang/YanceyWang.github.io.git
   branch: master
 
-#theme
-theme: yilia
 #feed
-feed:
- type: atom
- path: atom.xml
- limit: 20
+# feed:
+#  type: atom
+#  path: atom.xml
+#  limit: 20
+
 #sitemap
 sitemap:
    path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml

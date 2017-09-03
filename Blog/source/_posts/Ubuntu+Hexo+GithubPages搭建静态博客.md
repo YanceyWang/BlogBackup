@@ -91,8 +91,8 @@ $ npm install -g hexo-cli
 ###**Github pages 仓库创建**
 
 安装好Hexo后,就该另一个主角Github pages 登场了.关于Github pages的介绍,请看[这里](https://pages.github.com/),它主要的作用是github给你或你的团队展示你的项目的地方,我们用这个来放我的博客简直再适合不过了.
-![new repo](http://7xkr9a.com1.z0.glb.clouddn.com/Blog00NewRepo.png)
-![new repo](http://7xkr9a.com1.z0.glb.clouddn.com/Blog00GithubIO.png)
+![new repo](http://7xkr9a.com1.z0.glb.clouddn.com/15/07/30NewRepo.png)
+![new repo](http://7xkr9a.com1.z0.glb.clouddn.com/15/07/30GithubIO.png)
 
 
 
@@ -131,7 +131,7 @@ INFO  Hexo is running at http://0.0.0.0:4000/. Press Ctrl+C to stop.
 > 这个时候在浏览器地址栏输入localhost:4000就可看到Hexo为我们生成的这边博客了
 大概就是这个样子(默认的标题和名字已经被我改掉啦)
 
-![默认HellowordPost](http://7xkr9a.com1.z0.glb.clouddn.com/Blog00HelloWorld.png)
+![默认HellowordPost](http://7xkr9a.com1.z0.glb.clouddn.com/15/07/30HelloWorld.png)
 
 > 到此我们已经把基本建博客的流程走过一遍了,怎么样,是不是很easy呀.接下来我们完成三个事情:创建一个篇新的博客,给博客换个主题,上传到Github pages.
 
@@ -268,7 +268,7 @@ $hexo generate
 $hexo server
 ```
 效果如下
-![use yilia theme](http://7xkr9a.com1.z0.glb.clouddn.com/Blog00UseYiliaTheme.png)
+![use yilia theme](http://7xkr9a.com1.z0.glb.clouddn.com/15/07/30UseYiliaTheme.png)
 
 **ok,大功告成,就差把博客部署到github.io了
 
@@ -302,17 +302,17 @@ $hexo deploy
 
 * **首先要去7牛[官网](http://www.qiniu.com/)注册帐号,然后准备好身份证前后照,进行身份验证,不然很多功能无法使用.**
 验证好了大概就是这个样子
-![身份验证](http://7xkr9a.com1.z0.glb.clouddn.com/Blog007niuIDvER.png)
+![身份验证](http://7xkr9a.com1.z0.glb.clouddn.com/15/07/30niuIDvER.png)
 
 * **接着就可以创建空间了**
-![创建空间](http://7xkr9a.com1.z0.glb.clouddn.com/Blog00CreateRepo.png)
+![创建空间](http://7xkr9a.com1.z0.glb.clouddn.com/15/07/30CreateRepo.png)
 
 * **然后进行图片上传,获取外连**
-![获取外连](http://7xkr9a.com1.z0.glb.clouddn.com/Blog007niuouterlink.png)
+![获取外连](http://7xkr9a.com1.z0.glb.clouddn.com/15/07/307niuouterlink.png)
 
 * **还可以新建样式,给图片设置缩放,加水印等.**
-![新建样式](http://7xkr9a.com1.z0.glb.clouddn.com/Blog00CreateStyle.png)
-
+![新建样式](http://7xkr9a.com1.z0.glb.clouddn.com/15/07/30CreateStyle.png)
+ 
 
 
 > **后记**

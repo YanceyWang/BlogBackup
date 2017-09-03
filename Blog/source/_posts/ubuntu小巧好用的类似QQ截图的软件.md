@@ -1,5 +1,7 @@
 title: ubuntu小巧好用的类似QQ截图的软件DeepinScrot
 date: 2015-07-31 09:46:52
+categories:
+- 玩机
 tags: 
 - Ubuntu
 - 截图软件
@@ -33,14 +35,16 @@ deepin-scrot
 
 为了使用方便，我们为它设置快捷启动键：
 打开systemsetting->keybord->shortcut
-![DeepinScrot](http://7xkr9a.com1.z0.glb.clouddn.com/Blog01DeepinScrotShortCut.png)
+![DeepinScrot](http://7xkr9a.com1.z0.glb.clouddn.com/15/07/31DeepinScrotShortCut.png)
 
 > 在custom shortcut 中新建一个项目，名字随便起。Command填  `deepin-scrot` 之后再给他个快捷键 `Ctrl+alt+A` 
 
 看下效果，按下 `CTRL+ALT+A`:
 
-![DeepinScrot](http://7xkr9a.com1.z0.glb.clouddn.com/Blog01DeepinScrot.png) 
+![DeepinScrot](http://7xkr9a.com1.z0.glb.clouddn.com/15/07/31DeepinScrot.png) 
 
 很不错，几乎跟QQ截图一样，也提供了一些快速标记的功能。
 
 感觉还不错~
+
+
